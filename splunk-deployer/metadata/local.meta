@@ -1,0 +1,28 @@
+[app/ui]
+version = 6.2.0
+modtime = 1439756486.056502000
+
+[app/launcher]
+version = 6.2.0
+modtime = 1439756486.059695000
+
+[app/package/check_for_updates]
+version = 6.2.0
+modtime = 1439756486.062620000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2Fsplunk-deployer%2Fbin%2FappDeployer.py]
+owner = admin
+version = 6.2.0
+modtime = 1439923130.882705000
+
+[app/install/install_source_checksum]
+version = 6.2.0
+modtime = 1439757065.320082000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2Fsplunk-deployer%2Fbin%2FlatestBuild.py]
+version = 6.2.0
+modtime = 1440006722.679213000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2Fsplunk-deployer%2Fbin%2FlatestRelease.py]
+version = 6.2.0
+modtime = 1439931492.837136000
