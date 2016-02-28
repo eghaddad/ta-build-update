@@ -67,20 +67,33 @@ def downloadLatestSPL(SPLUNK_HOME, TA_HOME, ta, release, version, spl):
                 print "Error - Coud not save and download spl file. Error=" + str(e) + " TA=" + str(ta) + " endpoint=" + endpoint
                 return -1
 
+
 def extractTA(SPLUNK_HOME, spl):
         try:
                 file_name= re.sub(r"\.spl|\.tgz", "", str(spl))
                 folder= re.sub(r"\-[0-9]+\.[0-9]+[^a-zA-Z]+", "", file_name)
-                str1="rm -Rf " + SPLUNK_HOME + "/etc/apps/" + folder
-                str2="rm -f " + SPLUNK_HOME + "/etc/apps/" + folder + "*.tar.gz"
-                str3="mv " + SPLUNK_HOME + "/etc/apps/" +  file_name + " " + SPLUNK_HOME + "/etc/apps/" +  file_name + ".tar.gz"
+                
+                #backup local folder
+                local_folder_name=SPLUNK_HOME+ '/etc/apps/' + folder + "/local"
+                backup_local_folder=SPLUNK_HOME + "/etc/apps/" + "local_backUp_" +  folder 
+                
+                str1="cp -R " + local_folder_name + " " + backup_local_folder
+                str2="rm -Rf " + SPLUNK_HOME + "/etc/apps/" + folder
+                str3="rm -f " + SPLUNK_HOME + "/etc/apps/" + folder + "*.tar.gz"
+                str4="mv " + SPLUNK_HOME + "/etc/apps/" +  file_name + " " + SPLUNK_HOME + "/etc/apps/" +  file_name + ".tar.gz"
                 time.sleep(1)
-                str4= "tar zxvf " + SPLUNK_HOME + "/etc/apps/" + file_name + ".tar.gz -C " + SPLUNK_HOME + "/etc/apps/"
+                str5= "tar zxvf " + SPLUNK_HOME + "/etc/apps/" + file_name + ".tar.gz -C " + SPLUNK_HOME + "/etc/apps/"
+                str6= "mv " + backup_local_folder + " " + SPLUNK_HOME + "/etc/apps/" +  folder + "/local"
 
-                os.system(str1)
+                if (os.path.isdir(local_folder_name)):
+                        os.system(str1)
                 os.system(str2)
                 os.system(str3)
                 os.system(str4)
+                os.system(str5)
+                if (os.path.isdir(backup_local_folder)):
+                        os.system(str6)
+                        print "Successfully backed up local folder"
                 return folder
 
         except Exception, e:
