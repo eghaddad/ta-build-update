@@ -109,6 +109,18 @@ try:
                                 url=downloadLatestSPL(SPLUNK_HOME, TA_HOME, s, latestPackage)
                                 folder=extractTA(SPLUNK_HOME, latestPackage)
                                 print "Sucessfully Updated TA. TA=" + s + " from URL=" + url + " folder=" + folder
+        
+        #download TA builder
+        TABuilder_HOME="http://repo.splunk.com/artifactory/Solutions/APP/"
+        print "Starting TA=TA Builder"
+        latestPackage=getLatestSPL(TABuilder_HOME, "splunk_app_addon-builder")
+        url=downloadLatestSPL(SPLUNK_HOME, TABuilder_HOME, "splunk_app_addon-builder", latestPackage)
+        folder=extractTA(SPLUNK_HOME, latestPackage)
+        print "Sucessfully Updated TA. TA=TA Buildr from URL=" + url + " folder=" + folder
+
+
+    
+
         #restartSplunk()
 
 
